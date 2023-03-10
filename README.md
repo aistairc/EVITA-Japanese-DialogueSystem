@@ -8,7 +8,7 @@ Japanese Dialogue System developed in EVITA project
     <li> References</li>
 </ol>
 
-<h2>1.Credits</h2>
+<h2>1. Credits</h2>
 This folder contains a Japanese dialogue system for the e-VITA Virtual Coach application, based on Rasa Open Source Conversational AI version 3.4: 
 https://rasa.com/docs/
 
@@ -18,7 +18,7 @@ https://www.soumu.go.jp/english/
 
 Files copyright AI Research Center (AIRC) at National Institute of Advanced Industrial Science and Technology (AIST), unless otherwise indicated or part of the Rasa framework. 
 https://www.airc.aist.go.jp/en/
-
+<br>
 Licence: Apache 2.0.
 
 Programmer: Tatsuya Kudo<br>
