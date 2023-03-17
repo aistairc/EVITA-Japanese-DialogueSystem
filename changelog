@@ -1,0 +1,126 @@
+## Added 20220622 by Kudo
+## Install Python libraries
+pip install neo4j~=4.1
+pip install wikipedia
+pip install duckpy
+pip install SPARQLWrapper
+## Added 20220727 by Kudo
+pip install wikipedia-api
+## Added 20221101 by Kudo
+pip install -U duckduckgo_search
+
+## Change History
+<!-- 20220627 added by Kudo -->
+V3.2
+   - Fewer sentences first showed in Wikipedia.
+   - Added the ability to query for "ダックゴー" in addition to "ダックダックゴー".
+   - For example, even "仙台" and "大阪" are now recognized as "仙台市" and "大阪市".
+
+<!-- 20220727 added by Kudo -->
+V3.3
+   - install new library 'pip install wikipedia-api'
+   - Modify wikipedia/duckduckgo query
+   - Change greeting response
+   - Add quiz game
+
+<!-- 20220803 added by Kudo -->
+V3.4
+   - Note: The fallowing error occurring
+      Tried to set non existent slot 'knowledge_base_listed_objects'. Make sure you added all your slots to your domain file.
+      Tried to set non existent slot 'knowledge_base_last_object'. Make sure you added all your slots to your domain file.
+      Tried to set non existent slot 'knowledge_base_last_object_type'. Make sure you added all your slots to your domain file.
+   - Add 'reverse word game'
+   - Add 'omikuji'
+   - Add 'prevention fall'
+   - Currently being added 'suggest walking steps'
+   - Modify wikipedia query
+
+<!-- 20220912 added by Kudo -->
+V4.0
+   - Major upgrade from Rasa2 to Rasa3 framework version
+   - modified the error occured v3.4
+   - change greeting action
+   
+<!-- 20221027 added by Kudo -->
+V4.1
+   - Add action 'dummy_healthy_recipe' (From Minamiguchi-san)
+   - Add action 'send_text_generic' (From Ryan-san)
+   - Add action 'action_define_desease' 
+   
+<!-- 20221027 added by Kudo -->
+V4.2
+   - Modify wikipedia, Duckduckgo query
+
+<!-- 20221101 added by Kudo -->
+V4.3
+   - Update wikipedia query
+   - Update duckduckgo query algorithm(needed "pip install -U duckduckgo_search")
+
+<!-- 20221109 added by Kudo -->
+V4.4
+   - Change news stories
+
+<!-- 20221117 added by Kudo -->
+V4.5
+   - Change some nlu, stories
+
+<!-- 20221124 added by Kudo -->
+V4.6
+   - Change yahoo news
+      - action.py
+         - add '8つのニュースをお届けできます。' firstly
+         - Made it a point to say the number at the beginning of the topic.
+      - stries.yml
+         - Added dialogue denying the following topic.
+   - Change nlu
+      - utter_thanks
+         - 'ありがとうございました！' -> 'ありがとうございました！他に質問したいことやお話したいことはありますか？'
+
+<!-- 20221222 added by Kudo -->
+V4.7
+   - Change game and quiz
+      - stries.yml
+         - Assumed number of all responses.
+   - Greeting
+      - stries.yml
+         - Assumes that the name is preserved or not.
+   - Weather
+      - Add tomorrow forecast.
+   - Disease
+      - Add a new disease to json file database
+   - Exercise
+      - Add some stories.
+   - Tracker store
+      - Changed save destination to sqlite 
+
+<!-- 20230118 added by Kudo -->
+V4.9
+   - Add kanjize (python library)
+      - actions.py (line 48)
+      - domain.yml (line 1276-1280)
+      - requirements.txt (line 178)
+   - Change greeting algorithm
+      - actions.py (line 1646-1657)
+   - Change exercise
+      - exercise.yml(nlu)
+      - exercise.yml(stories)
+      - domain.yml
+
+<!-- 20230118 added by Kudo -->
+V4.10
+   - Add action_clear_slot to goodbye story(dummy)
+      - chitchat.yml(stories) (line 82)
+   - Change exercise story 6 (Create branching by slot in action)
+      - exercise.yml(nlu) (line 64-88)
+   - Change news
+      - external.yml (line 43-75)
+   - Add wikipedia (ウィキペディアで***を教えて)
+      - actions.py (line 669-672)
+
+<!-- 20230310 added by Kudo -->
+V4.11
+   - Organizing Files. Divide actions.py into separate dialogue files.
+   - The file name is prefixed with "nlu_" "story_".
+   - Remove quiz_game files (because it doesn't work)
+   - Remove recipe files (as it is no need)
+   
