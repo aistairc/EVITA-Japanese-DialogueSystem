@@ -1,0 +1,299 @@
+# This code was developed for the Evita Virtual Coach project https://www.e-vita.coach/ at AIRC AIST
+# Version 4.9; Date 2023-01-20;
+# Programmer: Tatsuya Kudo, PI (AIRC): Kristiina Jokinen, unless otherwise indicated.
+# We thank all the Evita project partners for discussions and contributions.
+# License: Apache License 2.0;
+# Contact: K. Jokinen <kristiina.jokinen@aist.go.jp>
+
+version: "3.1"
+stories:
+# 1
+  - story: get exercise video
+    steps:
+      - intent: request_exercise_video
+      - action: utter_access_exe_chatbot
+      - action: action_clear_slot
+
+# 2
+  - story: after exercise
+    steps:
+      - intent: exercise_done
+      - action: utter_exercise_done
+      - or:
+        - intent: affirm
+        - intent: tired
+        - intent: deny
+      - action: utter_exercise_time
+      - or:
+        - intent: affirm
+        - intent: inform_exercise_time
+        - intent: deny
+      - action: utter_exercise_difficulty
+      - or:
+        - intent: affirm
+        - intent: inform_exercise_level
+        - intent: deny
+      - action: utter_exercise_user_data
+
+# 3
+  - story: Time for indoor exercise affirm
+    steps:
+      - intent: dummy_time_to_indoor_exercise
+      - action: utter_time_to_indoor_exercise
+      - intent: affirm
+      - action: utter_access_exe_chatbot
+      - action: action_clear_slot
+
+# 4
+  - story: Time for indoor exercise deny
+    steps:
+      - intent: dummy_time_to_indoor_exercise
+      - action: utter_time_to_indoor_exercise
+      - intent: deny
+      - action: utter_inform_indoor_exercise_later
+      - action: action_clear_slot
+
+# 5
+  - story: Suggest indoor exercise
+    steps:
+      - intent: request_indoor_exercise
+      - action: utter_access_exe_chatbot
+      - action: action_clear_slot
+
+# 6 minamiguchi-san
+# # SENARIO 6 main
+  - story: remind outdoor exercise not done and suggest exercise user affirm
+    steps:
+      - intent: dummy_time_to_outdoor_exercise
+      - action: utter_remind_outdoor_exercise
+      - or:
+        - intent: deny
+        - intent: exercise_not_done
+        - intent: not_done
+      - action: action_check_weather_temp
+      - intent: affirm
+      - action: utter_exe_remind_wear_smartwatch
+      - action: action_clear_slot
+
+  - story: remind outdoor exercise not done and suggest exercise user deny
+    steps:
+      - intent: dummy_time_to_outdoor_exercise
+      - action: utter_remind_outdoor_exercise
+      - or:
+        - intent: deny
+        - intent: exercise_not_done
+        - intent: not_done
+      - action: action_check_weather_temp
+      - intent: deny
+      - action: utter_counter_deny
+      - action: action_clear_slot
+
+# SENARIO 6 branch
+  - story: ask temperature outside clothing
+    steps:
+      - or:
+        - intent: ask_temperature_outside
+        - intent: ask_clothing_advice
+      - action: action_check_weather_temp
+
+# SENARIO 6 branch
+  - story: recommend walking course
+    steps:
+      - intent: ask_recommend_exercise_course
+      - action: utter_recommend_exercise_course
+
+# 8
+  - story: remind outdoor exercise not done and change remindar time
+    steps:
+      - intent: dummy_time_to_outdoor_exercise
+      - action: utter_remind_outdoor_exercise
+      - or:
+        - intent: affirm
+        - intent: exercise_done
+      - action: utter_ask_walking_distance
+      - intent: inform_walking_distance
+      - action: utter_ask_workout_duration
+      - intent: inform_workout_duration
+      - action: utter_ask_walking_time
+      - intent: inform_walking_time
+      - action: utter_exe_thanksforinform
+      - action: utter_ask_change_remindar_time
+      - intent: affirm
+      - action: utter_confirm_change_remindar_time
+
+  - story: remind outdoor exercise not done and no change remindar time
+    steps:
+      - intent: dummy_time_to_outdoor_exercise
+      - action: utter_remind_outdoor_exercise
+      - or:
+        - intent: affirm
+        - intent: exercise_done
+      - action: utter_ask_walking_distance
+      - intent: inform_walking_distance
+      - action: utter_ask_workout_duration
+      - intent: inform_workout_duration
+      - action: utter_ask_walking_time
+      - intent: inform_walking_time
+      - action: utter_exe_thanksforinform
+      - action: utter_ask_change_remindar_time
+      - intent: deny
+      - action: utter_confirm_no_change_remindar_time
+
+# 10
+  - story: get exercise video stiff shoulder
+    steps:
+      - intent: stiff_shoulders
+      - action: utter_stiff_shoulders
+      - action: utter_access_exe_chatbot
+      - action: action_clear_slot
+
+# 11
+  - story: how many steps
+    steps:
+      - intent: ask_how_many_steps_today
+      - action: utter_how_many_steps_today
+      - action: compare_steps_with_last_week
+      - action: utter_recommend_steps_per_day
+      - action: action_clear_slot
+
+# 12
+  - story: inform time to stand
+    steps:
+      - intent: dummy_time_to_stand
+      - action: utter_inform_stand
+      - action: action_clear_slot
+
+# 13
+  - story: do not want to do anything
+    steps:
+      - intent: dummy_time_to_exercise
+      - action: utter_recommend_exercise
+      - or:
+        - intent: do_not_want_to_exercise
+        - intent: deny
+      - action: utter_would_not_exercise_and_recommend_meditation
+      - or:
+        - intent: do_not_want_to_exercise
+        - intent: deny
+      - action: utter_inform_exercise_later
+
+  - story: it is time to exercise
+    steps:
+      - intent: dummy_time_to_exercise
+      - action: utter_recommend_exercise
+      - intent: affirm
+      - action: utter_access_exe_chatbot
+
+# 14
+  - story: lose weight from mild obesity
+    steps:
+      - intent: lose_weight
+      - action: utter_bmi_over_25
+      - or:
+        - intent: affirm
+        - intent: over
+      - action: utter_suggest_aerobic_exercise
+      - intent: affirm
+      - action: utter_exe_remind_wear_smartwatch
+
+# 15
+  - story: lose weight from normal
+    steps:
+      - intent: lose_weight
+      - action: utter_bmi_over_25
+      - or:
+        - intent: deny
+        - intent: not_over
+      - action: utter_bmi_normal
+      - intent: tight_waist
+      - action: utter_suggest_abs_exercise 
+      - intent: affirm
+      - action: utter_access_exe_chatbot
+
+# 16
+  - story: prevent fall
+    steps:
+      - intent: prevention_fall
+      - action: utter_suggest_resistance_exercise
+      - intent: request_knowledge_prevention_fall
+      - action: utter_knowledge_prevention_fall
+      - action: action_clear_slot
+
+# 17
+  # - story: prevention fall jp short_stride true user affirm # minamiguchi modified for SENARIO 17
+  #   steps:
+  #     - intent: prevention_fall
+  #     - action: utter_empathy # minamiguchi added
+  #     - slot_was_set:
+  #       - short_stride: True
+  #     - action: utter_advise_prevention_fall_shortstride
+  #     - action: action_prevention_fall
+  #     - intent: affirm
+  #     - action: action_prevention_fall
+
+  # - story: prevention fall jp short_stride false user affirm # minamiguchi added for SENAIRO 17
+  #   steps:
+  #     - intent: prevention_fall
+  #     - action: utter_empathy # minamiguchi added
+  #     - slot_was_set:
+  #       - short_stride: false
+  #     - action: action_prevention_fall
+  #     - intent: affirm
+  #     - action: action_prevention_fall
+
+  # - story: prevention fall jp short_stride true user deny # minamiguchi added for SENARIO 17
+  #   steps:
+  #     - intent: prevention_fall
+  #     - slot_was_set:
+  #       - short_stride: true
+  #     - action: utter_empathy # minamiguchi added
+  #     - action: utter_advise_prevention_fall_shortstride
+
+  # - story: prevention fall jp short_stride false user deny # minamiguchi added for SENAIRO 17
+  #   steps:
+  #     - intent: prevention_fall
+  #     - action: utter_empathy # minamiguchi added
+  #     - slot_was_set:
+  #       - short_stride: False
+  #     - action: action_prevention_fall
+  #     - intent: deny
+  #     - action: utter_counter_deny
+
+# # SENARIO 18
+  - story: should i exercise
+    steps:
+      - intent: should_i_exercise
+      - slot_was_set:
+        - exercise_done: False
+      - action: utter_exercise_done_false
+      - action: utter_suggest_exercise_outside
+      - intent: affirm
+      - action: utter_exe_remind_wear_smartwatch
+
+# # SENARIO 18 (another path when exercise is done)
+  - story: should i exercise already done
+    steps:
+      - intent: should_i_exercise
+      - slot_was_set:
+        - exercise_done: True
+      - action: utter_exercise_done_true
+  # - story: should i exercise
+  #   steps:
+  #     - intent: should_i_exercise
+  #     - action: action_exercise_done
+
+#################################################
+# # to set/check slot values for demo
+#   - story: calc stride length and set short stride boolean
+#     steps:
+#     - intent: inform_walking_distance
+#     - intent: user_shares_steps
+#     - action: action_calc_stride_length
+#     - action: utter_set_short_stride_bool
+
+# # to check slot values for demo
+#   - story: ask weather temp
+#     steps:
+#       - intent: ask_weather_temp_location
+#       - action: action_check_weather_temp
+#       - action: utter_weather_temp_location

@@ -1,0 +1,144 @@
+# This code was developed for the Evita Virtual Coach project https://www.e-vita.coach/ at AIRC AIST
+# Version 4.9; Date 2023-01-20;
+# Programmer: Tatsuya Kudo, PI (AIRC): Kristiina Jokinen, unless otherwise indicated.
+# We thank all the Evita project partners for discussions and contributions.
+# License: Apache License 2.0;
+# Contact: K. Jokinen <kristiina.jokinen@aist.go.jp>
+
+version: "3.1"
+stories:
+# wikipedia
+  - story: ask wikipedia user want to know more
+    steps:
+      - intent: ask_wikipedia
+      - action: action_query_wikipedia
+      - intent: affirm
+      - action: action_response_know_more
+
+  - story: ask wikipedia user doesnt want to know more
+    steps:
+      - intent: ask_wikipedia
+      - action: action_query_wikipedia
+      - intent: deny
+      - action: utter_thanks
+      - intent: deny
+      - action: utter_have_a_good_day
+      - action: action_clear_slot
+
+# duckduckgo
+  - story: ask duckduckgo
+    steps:
+      - intent: ask_duckduckgo
+      - action: action_query_duckduckgo
+      # - action: action_clear_slot
+
+  # - story: search no word
+  #   steps:
+  #     - intent: search_no_engine
+  #     - action: utter_search_no_engine
+  #     - action: action_extract_search_word
+  #     - intent: select_search_engine
+  #     - action: action_select_search_engine
+
+# yahoo news
+  - story: ask yahoo top news
+    steps:
+      - intent: ask_news
+      - action: action_clear_slot
+      - action: action_yahoo_news
+      - or:
+        - intent: affirm
+        - intent: deny
+      - action: action_yahoo_news
+      - or:
+        - intent: affirm
+        - intent: deny
+      - action: action_yahoo_news
+      - or:
+        - intent: affirm
+        - intent: deny
+      - action: action_yahoo_news
+      - or:
+        - intent: affirm
+        - intent: deny
+      - action: action_yahoo_news
+      - or:
+        - intent: affirm
+        - intent: deny
+      - action: action_yahoo_news
+      - or:
+        - intent: affirm
+        - intent: deny
+      - action: action_yahoo_news
+      - or:
+        - intent: affirm
+        - intent: deny
+      - action: action_yahoo_news
+
+  # - story: ask yahoo top news stop next news
+  #   steps:
+  #     - intent: ask_news
+  #     - action: action_yahoo_news
+  #     - intent: deny
+  #     - action: action_yahoo_news
+  #     - intent: deny
+  #     - action: utter_have_a_good_day
+
+  - story: ask yahoo news with search word
+    steps:
+      - intent: ask_news_with_word
+      - action: action_yahoo_news
+      - or:
+        - intent: affirm
+        - intent: deny
+      - action: action_yahoo_news
+      - or:
+        - intent: affirm
+        - intent: deny
+      - action: action_yahoo_news
+      - or:
+        - intent: affirm
+        - intent: deny
+      - action: action_yahoo_news
+      - or:
+        - intent: affirm
+        - intent: deny
+      - action: action_yahoo_news
+      - or:
+        - intent: affirm
+        - intent: deny
+      - action: action_yahoo_news
+
+  # - story: ask yahoo news with search word stop next news
+  #   steps:
+  #     - intent: ask_news_with_word
+  #     - action: action_yahoo_news
+  #     - intent: deny
+  #     - action: utter_thanks
+  #     - intent: deny
+  #     - action: utter_have_a_good_day
+
+  # - story: ask yahoo news
+  #   steps:
+  #     - intent: ask_news
+  #     - action: action_yahoo_news
+  #     - intent: affirm
+  #     - action: action_yahoo_news
+  #     - active_loop: action_yahoo_news
+  #     - active_loop: null
+  #     - intent: deny
+  #     - action: utter_have_a_good_day
+
+  # - story: ask news
+  #   steps:
+  #     - intent: ask_news
+  #     - action: action_yahoo_news
+  #     - intent: affirm
+  #     - action: action_yahoo_news
+
+  # - story: ask news stop next news
+  #   steps:
+  #     - intent: ask_news
+  #     - action: action_yahoo_news
+  #     - intent: deny
+  #     - action: utter_have_a_good_day

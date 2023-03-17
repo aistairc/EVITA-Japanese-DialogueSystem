@@ -1,0 +1,361 @@
+# This code was developed for the Evita Virtual Coach project https://www.e-vita.coach/ at AIRC AIST
+# Version 4.9; Date 2023-01-20;
+# Programmer: Tatsuya Kudo, PI (AIRC): Kristiina Jokinen, unless otherwise indicated.
+# We thank all the Evita project partners for discussions and contributions.
+# License: Apache License 2.0;
+# Contact: K. Jokinen <kristiina.jokinen@aist.go.jp>
+
+version: "3.1"
+nlu:
+# 1. Nishizaki san
+- intent: request_exercise_video
+  examples: |
+    - 運動のビデオが見たい
+    - 運動のビデオが見たいです
+    - 運動のビデオを見せてください
+    - 運動がしたい。運動のビデオが見たい。
+    - 運動したいんですが。運動のビデオを見られますか。
+    - 体を動かそうかな。運動のビデオを見せて
+    - 体を動かしたい。やり方を教えて
+    - 運動のやり方を教えて
+    - 運動したいから、チャットボットに繋いで
+    - 運動したいな
+    - 運動したいです
+    - 運動したい
+    - 運動がしたいな
+    - 運動がしたいです
+    - 運動がしたい
+
+# 2
+- intent: exercise_done
+  examples: |
+    - 運動が終わりました
+    - 運動しました
+    - 運動してきたよ
+    - 運動終わった
+    - 運動終わりました
+    - 運動終わったよ
+    - エクササイズが終了しました
+    - 運動してきました
+    - 運動してきた
+    - 今戻ったよ
+    - 戻りました
+    - 戻ったよ
+    - ただいま
+    - 帰ってきました
+    - 帰ってきたよ
+    - 終わりました
+    - 終わったよ
+
+- intent: tired
+  examples: |
+    - はい、[疲れました]{"entity":"tired", "value":"tired"}
+    - [疲れました]{"entity":"tired", "value":"tired"}
+    - とても[疲れた]{"entity":"tired", "value":"tired"}
+    - ちょっと[疲れた]{"entity":"tired", "value":"tired"}
+    - 少し[疲れた]{"entity":"tired", "value":"tired"}
+    - [疲れていない]{"entity":"tired", "value":"not_tired"}
+    - 全く[疲れていない]{"entity":"tired", "value":"not_tired"}
+    - あんまり[疲れなかった]{"entity":"tired", "value":"not_tired"}
+    - [疲れませんでした]{"entity":"tired", "value":"not_tired"}
+
+- intent: inform_exercise_time
+  examples: |
+    - はい、[長かった]{"entity":"exercise_time", "value":"long"}です
+    - 少し[長かった]{"entity":"exercise_time", "value":"long"}です
+    - とても[長かった]{"entity":"exercise_time", "value":"long"}
+    - ちょっと[長かった]{"entity":"exercise_time", "value":"long"}
+    - 少し[短かった]{"entity":"exercise_time", "value":"short"}
+    - [短かった]{"entity":"exercise_time", "value":"short"}
+    - [短すぎる]{"entity":"exercise_time", "value":"short"}
+    - [長くなかった]{"entity":"exercise_time", "value":"short"}
+    - それほど[長くなかった]{"entity":"exercise_time", "value":"short"}
+    - そんなに[長くなかった]{"entity":"exercise_time", "value":"short"}
+    - あまり[長くなかった]{"entity":"exercise_time", "value":"short"}
+    - あんまり[長くなかった]{"entity":"exercise_time", "value":"short"}
+
+- intent: inform_exercise_level
+  examples: |
+    - はい、もっと簡単な運動がいいです
+    - とても[難しかった]{"entity":"exercise_level", "value":"difficult"}
+    - ちょっと[難しかった]{"entity":"exercise_level", "value":"difficult"}
+    - [簡単]{"entity":"exercise_level", "value":"easy"}だった
+    - [難しくなかった]{"entity":"exercise_level", "value":"easy"}
+    - [難しくはなかった]{"entity":"exercise_level", "value":"easy"}です
+    - [丁度よかった]{"entity":"exercise_level", "value":"normal"}
+    - [普通]{"entity":"exercise_level", "value":"normal"}
+    - [普通]{"entity":"exercise_level", "value":"normal"}でした
+    - [普通]{"entity":"exercise_level", "value":"normal"}です
+    - [ちょうどよかった]{"entity":"exercise_level", "value":"normal"}
+
+# 3,4
+- intent: dummy_time_to_indoor_exercise
+  examples: |
+    - 屋内運動のトリガー
+    - 室内運動のトリガー
+    - 室内運動の時間のトリガー
+
+# 5
+- intent: request_indoor_exercise
+  examples: |
+    - 室内運動をしたいです
+    - 家の中で体を動かしたいな。おすすめを教えてください
+    - 家で運動したいな。何がいいかなあ？
+    - 部屋の中で運動したい。何をやったらいいか教えて
+    - 少し体を動かしたいな
+    - 簡単な運動を教えて
+
+# 6
+- intent: dummy_time_to_outdoor_exercise
+  examples: |
+    - アウトドアエクササイズのトリガー
+    - 屋外運動のトリガー
+    - 屋外エクササイズのトリガー
+
+- intent: ask_temperature_outside
+  examples: |
+    - 外は寒いですか？
+    - 今日は暖かいですか？
+    - 今日の気温はどうですか？
+    - 外の気温は？
+    - 外の気温を教えてください
+
+- intent: ask_clothing_advice
+  examples: |
+    - 上着を着た方がいいですか？
+    - 何か着た方がいいですか？
+    - どんな服を着たらいいですか？
+
+- intent: ask_recommend_exercise_course
+  examples: |
+    - お勧めのコースを教えてください。
+    - どこを歩けばいいですか？
+    - どれぐらい歩けばいいですか？
+    - どうやって歩けばいいですか？
+    - 何分歩けばいいですか？
+    - どれぐらいのペースで歩けばいいですか？
+
+# - intent: done
+#   examples: |
+#     - 終わりました
+#     - 終わったよ
+#     - 完了しました
+#     - もうやったよ
+#     - もう済ませました
+#     - 済ませたよ
+
+# - intent: back
+#   examples: |
+#     - 今戻ったよ
+#     - 戻りました
+#     - 戻ったよ
+#     - ただいま
+#     - 帰ってきました
+#     - 帰ってきたよ
+
+- intent: exercise_not_done
+  examples: |
+    - いいえ、まだ運動してません
+    - まだ運動してません
+    - まだ運動してない
+
+- intent: not_done
+  examples: |
+    - まだです
+    - まだしてません
+    - してません
+    - してないです
+    - やってません
+    - やってない
+    - まだこれからです
+    - この後やるつもりです
+    - 今やろうと思ってました
+    - いいえ、まだです
+
+# 8
+- intent: inform_walking_distance
+  examples: |
+    - スマートウオッチには[1.05](distance_walked)kmと表示されています
+    - [3](distance_walked)kmと表示されています
+    - [1.05](distance_walked)キロです
+    - [1](distance_walked)キロ歩きました
+    - [5](distance_walked)キロ歩きました
+    - [2](distance_walked)キロです
+    - 今日私は[3](distance_walked)キロ歩きました
+    - [7](distance_walked)キロメートル歩きました
+    - [6](distance_walked)km歩きました
+    - 今日[10](distance_walked)Km歩いたよ
+    - 今日は[5](distance_walked)キロくらい歩きました
+    - 今日[十](distance_walked)キロ歩きました
+    - 今日[一](distance_walked)キロ歩きました
+    - 今日[五](distance_walked)キロ歩きました
+    - [1](distance_walked)キロ
+    - [1.5](distance_walked)キロ
+
+- intent: inform_workout_duration
+  examples: |
+    - スマートウオッチには20分と表示されています
+    - スマートウオッチには1時間と表示されています
+    - 20分です
+    - 1時間20分です
+    - 45分です
+    - 30分です
+    - 5分です
+    - はい、5分です
+    - はい、1時間です
+    - はい、1時間半です
+    - はい、30分です
+    - はい、2時間です
+
+- intent: inform_walking_time
+  examples: |
+    - 朝7:00頃です
+    - 朝7時頃です
+    - 7時頃です
+    - 7時です
+    - 15時です
+    - 12時
+    - 12時45分
+    - 10時30分
+    - 3時です
+    - 3時半です
+    - 3時半くらい
+    - 3時くらいです
+
+# 10
+- intent: stiff_shoulders
+  examples: |
+    - 肩が凝りました
+    - 肩がこりました
+    - 肩凝った
+    - 肩こった
+    - 肩が痛い
+    - 肩凝りがひどいです
+    - 長い間本を読んでいて、肩が凝りました
+    - ずっと机で書き物としていて、疲れました
+    - 肩が重い
+
+# 11
+- intent: ask_how_many_steps_today
+  examples: |
+    - 今日何歩歩きましたか？
+    - 今日何歩歩いた？
+    - 何歩歩いた？
+    - 何歩くらい歩きましたか？
+    - 今日は何歩くらい歩きましたか？
+    - 今日は何歩くらい歩いたかな？
+    - 何歩歩いたかな？
+    - 今日の歩数は？
+    - 今日の歩数を教えて
+    - 今日の歩数を教えてください
+    - 今日私は何歩歩いた？
+    - 今日何歩だった？
+
+# 12 dummy intent
+- intent: dummy_time_to_stand
+  examples: |
+    - 立つ時間のトリガー
+    - スタンドのトリガー
+
+# 13 dummy intent
+- intent: dummy_time_to_exercise
+  examples: |
+    - 運動する時間のトリガー
+    - 運動のトリガー
+
+- intent: do_not_want_to_exercise
+  examples: |
+    - 運動したくない
+    - 動きたくない
+    - 今は動きたくないです
+    - 動きたくないです
+    - 今は運動したくないです
+
+# 14,15
+- intent: lose_weight
+  examples: |
+    - 最近太ってきた気がする
+    - 太ってしまった
+    - 太った
+    - 最近太った
+    - 最近太った気がする
+    - 体重が増えたように思います
+    - もっとやせたいの
+    - 体重を落としたいです
+
+- intent: tight_waist
+  examples: |
+    - お腹が出てきたみたい。ズボンのウエストがきついです
+    - ズボンのウエストがきついです
+    - お腹が出てきたみたい
+    - おなか周りがきゅうくつなんだ
+    - 最近スカートがきつくて
+    - 子供に太ったねと言われた
+    - 二段腹になってきた
+    - ズボンが入らない
+    - 上着のボタンが閉まらない
+
+- intent: over
+  examples: |
+    - はい、超えてます
+    - 超えてます
+    - はい、超えています
+    - 超えています
+    - はい、超えてる
+    - 超えてる
+    - 超えてるんじゃないかな
+    - 超えてると思う
+    - 超えてると思います
+
+- intent: not_over
+  examples: |
+    - いいえ、超えてません
+    - 超えてません
+    - いいえ、超えていません
+    - 超えていません
+    - いいえ、超えてない
+    - 超えてない
+    - 超えてないんじゃないかな
+    - 超えてないと思う
+    - 超えてないと思います
+
+# 16,17
+- intent: prevention_fall
+  examples: |
+    - 最近歩いていると小さな段差に引っかかって転びそうで怖い
+    - 転ばないようにしたいです
+    - 転倒したくない
+    - 最近転びそうになる
+    - 転びそうで怖い
+    - 最近よくつまづく
+    - 小さな段差につまづいて転びそうになる
+    - 歩いている時よくつまづく
+    - 最近よく躓く
+    - 小さな段差に躓いて転びそうになる
+    - 歩いている時よく躓く
+
+- intent: request_knowledge_prevention_fall
+  examples: |
+    - 筋トレ以外に何か転ばない方法はありませんか？
+    - 転倒予防の方法を教えて。
+    - 転倒を防ぐためにはどうしたらいいですか？
+
+- intent: should_i_exercise
+  examples: |
+    - これから運動をした方がいいですか？
+    - 運動した方がいいかな
+    - 体を動かした方がいいかな
+    - 動いた方がいいかな
+    - 運動するべきですか
+    - 運動するべきだと思いますか
+
+#################################################
+# to set/check slot values for demo
+# 20230111 changed
+# "report_distance_walked" was merged into "inform_walking_distance".
+
+# - intent: ask_weather_temp_location
+#   examples: |
+#     - [柏](geographic_location)の天気と気温を確認
+#     - [つくば](geographic_location)の天気と気温をチェック
+#     - [ひたちなか](geographic_location)の天気を出力

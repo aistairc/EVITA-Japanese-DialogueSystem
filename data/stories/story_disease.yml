@@ -1,0 +1,67 @@
+# This code was developed for the Evita Virtual Coach project https://www.e-vita.coach/ at AIRC AIST
+# Version 4.9; Date 2023-01-20;
+# Programmer: Tatsuya Kudo, PI (AIRC): Kristiina Jokinen, unless otherwise indicated.
+# We thank all the Evita project partners for discussions and contributions.
+# License: Apache License 2.0;
+# Contact: K. Jokinen <kristiina.jokinen@aist.go.jp>
+
+version: "3.1"
+stories:
+# disease
+  - story: ask list disease
+    steps:
+      - intent: ask_list_disease
+      - action: action_query_disease_database
+
+  - story: ask define disease
+    steps:
+      - intent: ask_define_disease
+      - action: action_query_disease_database
+
+  - story: ask cause disease
+    steps:
+      - intent: ask_cause_disease
+      - action: action_query_disease_database
+
+  - story: ask cure for disease
+    steps:
+      - intent: ask_cure_for_disease
+      - action: action_query_disease_database
+
+  - story: ask precaution disease
+    steps:
+      - intent: ask_precaution_disease
+      - action: action_query_disease_database
+
+  - story: ask symptoms disease
+    steps:
+      - intent: ask_symptoms_disease
+      - action: action_query_disease_database
+
+  - story: ask doctor_type
+    steps:
+      - intent: ask_doctor_type
+      - action: action_query_disease_database
+
+  - story: ask leads to
+    steps:
+      - intent: ask_leads_to
+      - action: action_query_disease_database
+
+# fall
+  # - story: prevention fall
+  #   steps:
+  #     - intent: prevention_fall
+  #     - action: utter_recommend_prevention_fall
+  #     - intent: affirm
+  #     - action: action_prevention_fall
+
+  # - story: ask prevention fall
+  #   steps:
+  #     - intent: ask_define_fall
+  #     - action: action_query_disease_database
+
+  # - story: prevention fall
+  #   steps:
+  #     - intent: prevention_fall
+  #     - action: action_query_disease_database

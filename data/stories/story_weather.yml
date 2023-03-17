@@ -1,0 +1,32 @@
+# This code was developed for the Evita Virtual Coach project https://www.e-vita.coach/ at AIRC AIST
+# Version 4.9; Date 2023-01-20;
+# Programmer: Tatsuya Kudo, PI (AIRC): Kristiina Jokinen, unless otherwise indicated.
+# We thank all the Evita project partners for discussions and contributions.
+# License: Apache License 2.0;
+# Contact: K. Jokinen <kristiina.jokinen@aist.go.jp>
+
+version: "3.1"
+stories:
+  - story: ask weather
+    steps:
+      - intent: ask_weather
+      - action: utter_ask_geographic_location
+      - intent: confirm_geographic_location
+      - action: action_weather_user_request
+
+  - story: ask weather with location
+    steps:
+      - intent: ask_weather_location
+      - action: action_weather_user_request
+
+  - story: ask weather tomorrow
+    steps:
+      - intent: ask_weather_user_location_tomorrow
+      - action: action_weather_tomorrow_user_request
+
+  - story: ask weather tomorrow with location
+    steps:
+      - intent: ask_weather_tomorrow
+      - action: utter_ask_geographic_location
+      - intent: confirm_geographic_location
+      - action: action_weather_tomorrow_user_request

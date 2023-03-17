@@ -1,0 +1,75 @@
+# This code was developed for the Evita Virtual Coach project https://www.e-vita.coach/ at AIRC AIST
+# Version 4.9; Date 2023-01-20;
+# Programmer: Tatsuya Kudo, PI (AIRC): Kristiina Jokinen, unless otherwise indicated.
+# We thank all the Evita project partners for discussions and contributions.
+# License: Apache License 2.0;
+# Contact: K. Jokinen <kristiina.jokinen@aist.go.jp>
+
+version: "3.1"
+rules:
+
+# user profiling
+  # - rule: Activate profile form
+  #   steps:
+  #   - action: utter_privacy_agreement
+  #   - intent: affirm
+  #   - action: utter_privacy_accept_agreement
+  #   - action: utter_intro_profile
+  #   - action: profile_form
+  #   - active_loop: profile_form
+
+  # - rule: Submit profile
+  #   condition:
+  #   - active_loop: profile_form
+  #   steps:
+  #   - action: profile_form
+  #   - active_loop: null
+  #   - slot_was_set:
+  #     - requested_slot: null
+  #   - action: utter_submit
+  #   - action: utter_anything_else
+
+  - rule: Ask the user to rephrase whenever they send a message with low NLU confidence
+    steps:
+      - intent: nlu_fallback
+      - action: utter_default
+
+  # - rule: greeting
+  #   steps:
+  #     - intent: greet
+  #     - action: action_greeting1
+
+  - rule: user_initiated_sad
+    steps:
+      - intent: user_initiated_sad
+      - action: utter_recognize_sad_face
+
+  - rule: the user explain he_she has happy face (case 1)
+    steps:
+      - intent: user_initiated_happy
+      - action: utter_recognize_happy_face
+
+  - rule: thirsty
+    steps:
+      - intent: thirsty
+      - action: utter_thirsty
+
+  - rule: hungry
+    steps:
+      - intent: hungry
+      - action: utter_hungry
+
+  - rule: good night
+    steps:
+      - intent: go_bed
+      - action: utter_go_bed
+
+  - rule: slot reset
+    steps:
+      - intent: reset_slot
+      - action: action_clear_slot
+
+  - rule: check slot
+    steps:
+      - intent: check_slot
+      - action: action_check_slot

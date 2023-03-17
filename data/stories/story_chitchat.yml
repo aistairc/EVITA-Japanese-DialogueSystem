@@ -1,0 +1,371 @@
+# This code was developed for the Evita Virtual Coach project https://www.e-vita.coach/ at AIRC AIST
+# Version 4.9; Date 2023-01-20;
+# Programmer: Tatsuya Kudo, PI (AIRC): Kristiina Jokinen, unless otherwise indicated.
+# We thank all the Evita project partners for discussions and contributions.
+# License: Apache License 2.0;
+# Contact: K. Jokinen <kristiina.jokinen@aist.go.jp>
+
+version: "3.1"
+stories:
+
+# greeting
+  # - story: talk about plan with greeting
+  #   steps:
+  #     - intent: greet
+  #     - action: action_greeting
+  #     - intent: inform
+  #     - action: repeat_back
+  #     - intent: affirm
+  #     - action: utter_goodbye
+
+  # - story: talk about plan with greeting and no plan
+  #   steps:
+  #     - intent: greet
+  #     - action: action_greeting
+  #     - intent: deny
+  #     - action: utter_recommend_todo
+  #     - or:
+  #       - intent: thanks
+  #       - intent: affirm
+  #     - action: utter_goodbye
+
+  # - story: greeting
+  #   steps:
+  #     - intent: greet
+  #     - action: action_greeting1
+
+  - story: greeting
+    steps:
+      - intent: greet
+      - action: get_weather
+      - action: action_greeting1
+      - checkpoint: if_user_name
+
+  - story: greeting (if user name is stored)
+    steps:
+      - checkpoint: if_user_name
+      - intent: inform
+      - action: repeat_back
+      - intent: affirm
+      - action: utter_have_a_good_day
+
+  - story: greeting (if user name is stored and no plan)
+    steps:
+      - checkpoint: if_user_name
+      - intent: deny
+      - action: utter_recommend_todo
+      - intent: affirm
+      - action: utter_have_a_good_day
+
+  - story: greeting (if user name is not stored and ask plan)
+    steps:
+      - checkpoint: if_user_name
+      - intent: answer_name
+      - action: get_user_name
+      - action: action_greeting2
+      - checkpoint: ask_plan_today
+
+  - story: greeting (if user name is not stored)
+    steps:
+      - checkpoint: ask_plan_today
+      - intent: inform
+      - action: repeat_back
+      - intent: affirm
+      - action: utter_have_a_good_day
+
+  - story: greeting (if user name is not stored and no plan)
+    steps:
+      - checkpoint: ask_plan_today
+      - intent: deny
+      - action: utter_recommend_todo
+      - intent: affirm
+      - action: utter_have_a_good_day
+
+  - story: say goodbye
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+      - action: action_clear_slot
+# Environmental state
+  # - story: feel hot
+  #   steps:
+  #     - intent: feel_hot
+  #     - action: action_temperature_recommend
+
+  # - story: feel cold
+  #   steps:
+  #     - intent: feel_cold
+  #     - action: action_temperature_recommend
+
+  # - story: feel bad
+  #   steps:
+  #     - intent: feel_bad
+  #     - action: utter_feel_bad
+
+  # - story: feel humid
+  #   steps:
+  #     - intent: feel_high_humid
+  #     - action: action_feel_high_humid
+
+  # - story: feel low humid
+  #   steps:
+  #     - intent: feel_low_humid
+  #     - action: action_feel_Low_humid
+
+  # - story: cannot sleep affirm
+  #   steps:
+  #     - intent: inform_bad_sleep
+  #     - action: action_sleep_disorder
+  #     - intent: affirm
+  #     - action: utter_feel_bad_cause
+  #     - intent: deny
+  #     - action: utter_co2_cause_feel_bad
+
+  # - story: cannot sleep deny
+  #   steps:
+  #     - intent: inform_bad_sleep
+  #     - action: action_sleep_disorder
+  #     - or:
+  #       - intent: deny
+  #       - intent: do_not_do
+  #     - action: utter_feel_bad_cause_deny
+
+  # - story: ask reduce CO2
+  #   steps:
+  #     - intent: ask_reduce_co2
+  #     - action: utter_how_to_reduce_co2
+
+  # - story: ask what is well being
+  #   steps:
+  #     - intent: ask_well_being
+  #     - action: utter_ask_well_being
+
+# chitchat
+  # - story: ask how are you
+  #   steps:
+  #     - intent: ask_how_are_you
+  #     - action: utter_how_are_you
+
+  # - story: ask how old
+  #   steps:
+  #     - intent: ask_how_old
+  #     - action: utter_how_old
+
+  # - story: ask are you bot
+  #   steps:
+  #     - intent: ask_are_you_bot
+  #     - action: utter_are_you_bot
+
+  # - story: ask are you human
+  #   steps:
+  #     - intent: ask_are_you_human
+  #     - action: utter_are_you_human
+
+  # - story: ask language
+  #   steps:
+  #     - intent: ask_language
+  #     - action: utter_language
+
+  # - story: ask name
+  #   steps:
+  #     - intent: ask_what_is_your_name
+  #     - action: utter_what_is_your_name
+
+  # - story: ask what can you do
+  #   steps:
+  #     - intent: ask_what_can_you_do
+  #     - action: utter_what_can_you_do
+
+  # - story: ask medical examinations
+  #   steps:
+  #     - intent: ask_medical_examinations
+  #     - action: utter_say_medical_examinations
+
+  # - story: ask who built
+  #   steps:
+  #     - intent: ask_who_built
+  #     - action: utter_who_built
+
+  # - story: user_initiated_sad
+  #   steps:
+  #     - intent: user_initiated_sad
+  #     - action: utter_recognize_sad_face
+
+  - story: thanks user continue dialog
+    steps:
+      - intent: thanks
+      - action: utter_thanks
+      - intent: affirm
+      - action: utter_tell_me_request
+
+  - story: thanks user doesn't continue dialog
+    steps:
+      - intent: thanks
+      - action: utter_thanks
+      - intent: deny
+      - action: utter_have_a_good_day
+
+  # - story: walk
+  #   steps:
+  #     - intent: user_shares_steps
+  #     - action: action_suggest_walking
+
+  # - story: the user explain he_she has happy face (case 1)
+  #   steps:
+  #     - intent: user_initiated_happy
+  #     - action: utter_recognize_happy_face
+
+  # - story: exercise
+  #   steps:
+  #     - intent: exercise
+  #     - action: utter_select_exercise
+  #     - intent: select_exercise
+  #     - action: utter_do_exercise
+  #     - or:
+  #       - intent: thanks
+  #       - intent: affirm
+  #     - action: utter_thanks
+
+  # - story: thirsty
+  #   steps:
+  #     - intent: thirsty
+  #     - action: utter_thirsty
+
+  # - story: hungry
+  #   steps:
+  #     - intent: hungry
+  #     - action: utter_hungry
+
+  # - story: omikuji
+  #   steps:
+  #     - intent: omikuji
+  #     - action: action_omikuji
+
+  # - story: daily activity much and ask recipe
+  #   steps:
+  #     - intent: tired
+  #     - action: utter_check_app
+  #     - or:
+  #       - intent: affirm
+  #       - intent: check
+  #       - intent: no_check
+  #     - action: utter_check_activity
+  #     - intent: much
+  #     - action: utter_advice_much_activity
+  #     - intent: affirm
+  #     - action: utter_ask_recipe
+  #     - intent: affirm
+  #     - action: utter_advice_recipe_yes
+  #     - intent: affirm
+  #     - action: utter_ask_nutrition
+  #     - intent: affirm
+  #     - action: utter_advice_vegetable
+  #     - intent: affirm
+  #     - action: utter_ask_find_recipe
+  #     - intent: affirm
+  #     - action: utter_find_recipe
+
+  # - story: daily activity much and not ask recipe
+  #   steps:
+  #     - intent: tired
+  #     - action: utter_check_app
+  #     - or:
+  #       - intent: affirm
+  #       - intent: check
+  #       - intent: no_check
+  #     - action: utter_check_activity
+  #     - intent: much
+  #     - action: utter_advice_much_activity
+  #     - intent: affirm
+  #     - action: utter_ask_recipe
+  #     - intent: deny
+  #     - action: utter_goodbye
+
+  # - story: daily activity less jp
+  #   steps:
+  #     - intent: tired
+  #     - action: utter_check_app
+  #     - intent: affirm
+  #     - action: utter_check_activity
+  #     - intent: less
+  #     - action: utter_advice_less_activity
+  #     - intent: affirm
+  #     - action: utter_ask_recipe
+  #     - intent: affirm
+  #     - action: utter_advice_recipe_yes
+  #     - intent: affirm
+  #     - action: utter_ask_nutrition
+  #     - intent: affirm
+  #     - action: utter_advice_vegetable
+  #     - intent: affirm
+  #     - action: utter_ask_find_recipe
+  #     - intent: look_for
+  #     - action: utter_look_for_recipe
+
+  # - story: high sleep quality
+  #   steps:
+  #     - intent: inform_bad_sleep
+  #     - action: utter_cannot_sleep
+  #     - intent: affirm
+  #     - action: utter_check_activity
+  #     - intent: affirm
+  #     - action: utter_ask_score_sleep
+  #     - intent: high_score
+  #     - action: utter_high_score_sleep_quality
+  #     - intent: affirm
+  #     - action: utter_advice_high_sleep_quality
+
+  # - story: low sleep quality
+  #   steps:
+  #     - intent: inform_bad_sleep
+  #     - action: utter_cannot_sleep
+  #     - intent: affirm
+  #     - action: utter_check_activity
+  #     - intent: affirm
+  #     - action: utter_ask_score_sleep
+  #     - intent: low_score
+  #     - action: utter_high_score_sleep_quality
+  #     - intent: affirm
+  #     - action: utter_advice_high_sleep_quality
+
+  # - story: good night
+  #   steps:
+  #     - intent: go_bed
+  #     - action: utter_go_bed
+  #     - intent: affirm
+  #     - action: utter_impression
+  #     - intent: affirm
+  #     - action: utter_ask_impression
+  #     - intent: answer_impression
+  #     - action: utter_good_night
+
+  # - story: good night
+  #   steps:
+  #     - intent: go_bed
+  #     - action: utter_go_bed
+
+  # - story: slot reset
+  #   steps:
+  #     - intent: reset_slot
+  #     - action: action_clear_slot
+
+  # - story: check slot
+  #   steps:
+  #     - intent: check_slot
+  #     - action: action_check_slot
+
+  # - story: greet and play music
+  #   steps:
+  #     - intent: greet
+  #     - action: action_greeting
+  #     - intent: ask_listen_music
+  #     - action: utter_play_song
+  #     - action: action_music_API
+  #     - action: utter_did_you_like_it
+  #     - intent: affirm
+  #     - action: utter_happy
+
+  # - story: user want to meditate
+  #   steps:
+  #     - intent: want_meditate
+  #     - action: send_relax_video

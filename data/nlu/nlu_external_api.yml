@@ -1,0 +1,88 @@
+# This code was developed for the Evita Virtual Coach project https://www.e-vita.coach/ at AIRC AIST
+# Version 4.9; Date 2023-01-20;
+# Programmer: Tatsuya Kudo, PI (AIRC): Kristiina Jokinen, unless otherwise indicated.
+# We thank all the Evita project partners for discussions and contributions.
+# License: Apache License 2.0;
+# Contact: K. Jokinen <kristiina.jokinen@aist.go.jp>
+
+version: "3.1"
+nlu:
+- intent: ask_wikipedia
+  examples: |
+    - ウィキペディアで産業技術総合研究所を調べてください
+    - ウィキペディアで産総研を調べてください
+    - ウィキペディアでドラえもんを調べてください
+    - ウィキペディアで井上尚弥を調べてください
+    - ウィキペディアで松井秀喜を調べてください
+    - ウィキペディアで中村俊輔を調べて
+    - ウィキペディアでスラムダンクを調べてください
+    - ウィキペディアで週刊少年ジャンプを調べてください
+    - ウィキペディアでジョジョの奇妙な冒険を調べてください
+    - ウィキペディアで東京都を教えて
+    - ウィキペディアでレインボーブリッジを教えてください
+
+- intent: ask_duckduckgo
+  examples: |
+    - ダックダックゴー、Google
+    - ダックダックゴーで登山を調べてください
+    - ダックダックゴーで那須岳を調べてください
+    - ダックダックゴーで日光白根山を調べてください
+    - ダックダックゴーで通信障害を調べて
+    - ダックダックゴーで統一教会を調べて
+    - ダックダックゴーでスラムダンクを調べて
+
+# news
+- intent: ask_news
+  examples: |
+    - ニュース
+    - 今日のニュース
+    - ニュースを知りたい
+    - ニュース読んで
+    - トップニュース
+
+- intent: ask_news_with_word
+  examples: |
+    - 梅雨のニュース
+    - 国内のニュース
+    - 台風のニュース
+    - アウディのニュース
+    - 円安のニュース
+    - 交通事故のニュース
+    - 経済のニュース
+    - 野球のニュース
+    - サッカーのニュース
+    - スポーツのニュース
+    - コロナのニュース
+    - 住宅ローンのニュース
+    - スラムダンクのニュース
+    - 新型コロナウイルスのニュース
+    - ニューオータニのニュース
+    - 大谷翔平のニュース
+    - エンタメのニュース
+    - 自動運転のニュース
+    - 通信障害のニュース
+    - ワールドカップのニュース
+    - 足立区のニュース
+    - CX30のニュース
+
+# - intent: search_no_engine
+#   examples: |
+#     - ダイキンについて教えて
+#     - オーブンレンジについて教えて
+#     - 人工知能について教えて
+#     - クレッセントについて教えて
+#     - マッサージについて教えて
+#     - おすすめの店を教えて
+#     - 一条工務店を調べて
+#     - アイフルホームを調べて
+#     - ダイキンって何ですか？
+#     - ダイキンって何？
+#     - えきねっとって何ですか？
+#     - スマートホームって何？
+#     - おすすめの店を検索して
+
+# - intent: select_search_engine
+#   examples: |
+#     - ウィキペディア
+#     - ダックダックゴー
+#     - ダックゴー

@@ -1,0 +1,96 @@
+# This code was developed for the Evita Virtual Coach project https://www.e-vita.coach/ at AIRC AIST
+# Version 4.9; Date 2023-01-20;
+# Programmer: Tatsuya Kudo, PI (AIRC): Kristiina Jokinen, unless otherwise indicated.
+# We thank all the Evita project partners for discussions and contributions.
+# License: Apache License 2.0;
+# Contact: K. Jokinen <kristiina.jokinen@aist.go.jp>
+
+version: "3.1"
+nlu:
+- intent: ask_list_disease
+  examples: |
+    - 病気を[挙げて]{"entity":"object_type", "value":"病気"}ください
+    - 知ってる病気を[挙げて]{"entity":"object_type", "value":"病気"}ください
+
+- intent: ask_define_disease
+  examples: |
+    - [糖尿病]{"entity":"name"}はどんな[病気]{"entity":"object_type", "value":"病気"}ですか？
+    - [高血圧]{"entity":"name"}はどんな[病気]{"entity":"object_type", "value":"病気"}？
+    - [うつ病]{"entity":"name"}はどんな[病気]{"entity":"object_type", "value":"病気"}？
+    - [統合失調症]{"entity":"name"}はどんな[病気]{"entity":"object_type", "value":"病気"}？
+    - [不安障害]{"entity":"name"}はどんな[病気]{"entity":"object_type", "value":"病気"}？
+    - [にきび]{"entity":"name"}はどんな[病気]{"entity":"object_type", "value":"病気"}？
+    - [PCOD]{"entity":"name"}はどんな[病気]{"entity":"object_type", "value":"病気"}？
+    - [ホルモンバランスの乱れ]{"entity":"name"}はどんな[病気]{"entity":"object_type", "value":"病気"}？
+    - [風邪]{"entity":"name"}はどんな[病気]{"entity":"object_type", "value":"病気"}？
+    - [喘息]{"entity":"name"}はどんな[病気]{"entity":"object_type", "value":"病気"}？
+    - [双極性障害]{"entity":"name"}はどんな[病気]{"entity":"object_type", "value":"病気"}？
+    - [乳糖不耐症]{"entity":"name"}はどんな[病気]{"entity":"object_type", "value":"病気"}？
+    - [甲状腺]{"entity":"name"}はどんな[病気]{"entity":"object_type", "value":"病気"}？
+    - [大腸がん]{"entity":"name"}はどんな[病気]{"entity":"object_type", "value":"病気"}？
+
+- intent: ask_cause_disease
+  examples: |
+    - [原因]{"entity":"attribute", "value":"原因"}は何ですか？
+    - [原因]{"entity":"attribute", "value":"原因"}は？
+    - [原因]{"entity":"attribute", "value":"原因"}は何？
+    - [糖尿病]{"entity":"mention"}の[原因]{"entity":"attribute", "value":"原因"}は何ですか？
+    - [なぜ]{"entity":"attribute", "value":"原因"}[糖尿病]{"entity":"mention"}になるのですか？
+    - [なんで]{"entity":"attribute", "value":"原因"}[糖尿病]{"entity":"mention"}になるの？
+    - [なんで]{"entity":"attribute", "value":"原因"}[鬱]{"entity":"mention"}になるの？
+    - [どうして]{"entity":"attribute", "value":"原因"}[にきび]{"entity":"mention"}になるの？
+    - [糖尿病]{"entity":"mention"}になる[原因]{"entity":"attribute", "value":"原因"}は何ですか？
+    - [糖尿病]{"entity":"mention"}の[理由]{"entity":"attribute", "value":"原因"}は？
+    - [にきび]{"entity":"mention"}の[理由]{"entity":"attribute", "value":"原因"}は？
+    - [糖尿病]{"entity":"mention"}になる[理由]{"entity":"attribute", "value":"原因"}は？
+
+- intent: ask_cure_for_disease
+  examples: |
+    - [治療法]{"entity":"attribute", "value":"治療法"}はありますか？
+    - [治療法]{"entity":"attribute", "value":"治療法"}を教えてください
+    - どうすれば[治りますか]{"entity":"attribute", "value":"治療法"}？
+    - どうすれば[治る]{"entity":"attribute", "value":"治療法"}？
+    - どうしたら[治りますか]{"entity":"attribute", "value":"治療法"}？
+    - どうしたら[治る]{"entity":"attribute", "value":"治療法"}？
+    - [糖尿病]{"entity":"name"}の[治療法]{"entity":"attribute", "value":"治療法"}は何ですか？
+    - [高血圧症]{"entity":"name"}はどのようにしたら[治る]{"entity":"attribute", "value":"治療法"}のでしょうか？
+
+- intent: ask_precaution_disease
+  examples: |
+    - [予防法]{"entity":"attribute", "value":"予防法"}は？
+    - [予防法]{"entity":"attribute", "value":"予防法"}を教えて
+    - [予防法]{"entity":"attribute", "value":"予防法"}はありますか？
+    - [糖尿病]{"entity":"name"}を[予防]{"entity":"attribute", "value":"予防法"}するためにできることは？
+    - [糖尿病]{"entity":"name"}の[予防法]{"entity":"attribute", "value":"予防法"}は？
+    - [糖尿病]{"entity":"name"}に[ならないために]{"entity":"attribute", "value":"予防法"}何をすべきですか？
+    - [糖尿病]{"entity":"name"}に[ならないためには]{"entity":"attribute", "value":"予防法"}？
+    - [転ばない]{"entity":"object_type", "value":"転倒"}ように[するには]{"entity":"attribute", "value":"予防法"}？
+    - [転倒](object_type)[防止]{"entity":"attribute", "value":"予防法"}
+
+- intent: ask_symptoms_disease
+  examples: |
+    - どんな[症状]{"entity":"attribute", "value":"症状"}ですか？
+    - どういう[症状]{"entity":"attribute", "value":"症状"}ですか？
+    - どういった[症状]{"entity":"attribute", "value":"症状"}ですか？
+    - [糖尿病]{"entity":"name"}の[症状]{"entity":"attribute", "value":"症状"}は？
+    - [糖尿病]{"entity":"name"}はどんな[症状]{"entity":"attribute", "value":"症状"}ですか？
+
+- intent: ask_doctor_type
+  examples: |
+    - [誰]{"entity":"attribute", "value":"医師タイプ"}に聞けばいいですか？
+    - [誰]{"entity":"attribute", "value":"医師タイプ"}に相談したらいいですか？
+    - [どのお医者さん]{"entity":"attribute", "value":"医師タイプ"}に聞けばいいですか？
+    - [何の先生]{"entity":"attribute", "value":"医師タイプ"}に相談したらいいですか？
+    - [何の先生]{"entity":"attribute", "value":"医師タイプ"}に診てもらったらいいですか？
+    - [糖尿病]{"entity":"name"}を治すには[誰]{"entity":"attribute", "value":"医師タイプ"}に聞けばいいですか？
+    - [高血圧症]{"entity":"name"}を治すには[誰]{"entity":"attribute", "value":"医師タイプ"}に聞けばいいですか？
+    - [糖尿病]{"entity":"name"}を治すには[どのお医者さん]{"entity":"attribute", "value":"医師タイプ"}に連絡すればいいですか？
+
+- intent: ask_leads_to
+  examples: |
+    - 何の病気を[引き起こし]{"entity":"attribute", "value":"leads_to"}ますか？
+    - 別の病気を[引き起こし]{"entity":"attribute", "value":"leads_to"}ますか？
+    - どんな病気を[引き起こし]{"entity":"attribute", "value":"leads_to"}ますか？
+    - [糖尿病]{"entity":"name"}になったら他に何の病気を[引き起こし]{"entity":"attribute", "value":"leads_to"}ますか？
+    - [高血圧]{"entity":"name"}になったら他に何の病気を[引き起こし]{"entity":"attribute", "value":"leads_to"}ますか？
+    - [乳糖不耐症]{"entity":"name"}になったらどんな病気に[繋がり]{"entity":"attribute", "value":"leads_to"}ますか？

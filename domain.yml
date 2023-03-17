@@ -1,0 +1,571 @@
+version: '3.1'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- affirm
+- answer_name
+- ask_are_you_bot
+- ask_cause_disease
+- ask_clothing_advice
+- ask_cure_for_disease
+- ask_define_disease
+- ask_doctor_type
+- ask_duckduckgo
+- ask_how_are_you
+- ask_how_many_steps_today
+- ask_leads_to
+- ask_list_disease
+- ask_news
+- ask_news_with_word
+- ask_precaution_disease
+- ask_recommend_exercise_course
+- ask_symptoms_disease
+- ask_temperature_outside
+- ask_weather
+- ask_weather_location
+- ask_weather_tomorrow_user
+- ask_weather_user_location_tomorrow
+- ask_what_can_you_do
+- ask_what_is_your_name
+- ask_wikipedia
+- check_slot
+- confirm_geographic_location
+- deny
+- do_not_know_answer
+- do_not_want_to_exercise
+- dummy_time_to_exercise
+- dummy_time_to_indoor_exercise
+- dummy_time_to_outdoor_exercise
+- dummy_time_to_stand
+- exercise
+- exercise_done
+- exercise_not_done
+- go_bed
+- goodbye
+- greet
+- hungry
+- inform
+- inform_exercise_level
+- inform_exercise_time
+- inform_walking_distance
+- inform_walking_time
+- inform_workout_duration
+- lose_weight
+- nlu_fallback
+- not_done
+- not_over
+- over
+- prevention_fall
+- reason_sadness
+- request_exercise_video
+- request_indoor_exercise
+- request_knowledge_prevention_fall
+- reset_slot
+- should_i_exercise
+- stiff_shoulders
+- thanks
+- thirsty
+- tight_waist
+- tired
+- user_initiated_happy
+- user_initiated_sad
+- user_shares_steps
+- ask_remind_call
+entities:
+- object_type
+- object_name
+- mention
+- attribute
+- geographic_location
+- search_engine
+- search_word
+- search_word_wiki
+- search_word_news
+- search_word_duck
+# - temperature_forecast
+- name
+- exercise
+- user_name
+- pedometer_user
+- recipe_type
+- food_type
+- ingredient
+- leads_to
+- disease
+- distance_walked
+- tired
+- exercise_time
+- exercise_level
+
+slots:
+  object_type:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: object_type
+  object_name:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: object_name
+  mention:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: mention
+  attribute:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: attribute
+  user_name:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: user_name
+  pedometer_user:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: pedometer_user
+  geographic_location:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: geographic_location
+  search_engine:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: search_engine
+  response_search_engine:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+  search_word:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: search_word
+  search_word_news:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: search_word_news
+  search_word_wiki:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: search_word_wiki
+  search_word_duck:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: search_word_duck
+  response_segment_number:
+    type: float
+    initial_value: 0.0
+    influence_conversation: false
+    mappings:
+    - type: custom
+    max_value: 1.0
+    min_value: 0.0
+  count:
+    type: float
+    initial_value: 0
+    influence_conversation: false
+    mappings:
+    - type: custom
+    max_value: 5.0
+    min_value: 0.0
+  count_deny:
+    type: float
+    initial_value: 0
+    influence_conversation: false
+    mappings:
+    - type: custom
+    max_value: 1.0
+    min_value: 0.0
+  name:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: name
+  advice_prevention_of_fall:
+    type: float
+    influence_conversation: false
+    mappings:
+    - type: custom
+    max_value: 1.0
+    min_value: 0.0
+  advice_meal:
+    type: float
+    influence_conversation: false
+    mappings:
+    - type: custom
+    max_value: 1.0
+    min_value: 0.0
+  advice_footwear:
+    type: float
+    influence_conversation: false
+    mappings:
+    - type: custom
+    max_value: 1.0
+    min_value: 0.0
+  knowledge_base_last_object:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: custom
+  knowledge_base_last_object_type:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: custom
+  knowledge_base_listed_objects:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: custom
+  knowledge_base_objects:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: custom
+  before_intent:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+  top_news:
+    type: list
+    influence_conversation: true
+    mappings:
+    - type: custom
+  result_with_search_word:
+    type: list
+    influence_conversation: true
+    mappings:
+    - type: custom
+  leads_to:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: leads_to
+  temp_max:
+    type: float
+    influence_conversation: false
+    mappings:
+    - type: custom
+  average_steps_last_week:
+    type: float
+    influence_conversation: false
+    initial_value: 10000
+    mappings:
+    - type: from_entity
+      entity: custom
+    max_value: 100000.0
+    min_value: 0.0
+  steps_today:
+    type: float
+    influence_conversation: false
+    initial_value: 8000
+    mappings:
+    - type: from_entity
+      entity: custom
+    max_value: 100000.0
+    min_value: 0.0
+  bmiover25:
+    type: bool
+    mappings:
+    - type: custom
+  exercise_done:
+    type: bool
+    initial_value: false
+    influence_conversation: true
+    mappings:
+    - type: from_intent
+      intent: exercise_done
+      value: true
+  should_go_out:
+    type: bool
+    initial_value: false
+    influence_conversation: true
+    mappings:
+    - type: custom
+  short_stride:
+    type: bool
+    initial_value: false
+    influence_conversation: true
+    mappings:
+    - type: custom
+  distance_walked:
+    type: float
+    initial_value: 0.0
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: distance_walked
+      intent: inform_walking_distance
+  # temperature_category:
+  #   type: categorical
+  #   values:
+  #   - 1
+  #   - 2
+  #   - 3
+  #   - 4
+  #   - 5
+  #   - 6
+  #   initial_value: null
+  #   influence_conversation: true
+  #   mappings:
+  #   - type: custom
+  weather_general:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: custom
+
+responses:
+  utter_goodbye:
+  - text: またお話ししましょう！
+  utter_have_a_good_day:
+  - text: 今日もいい日になりますように
+  - text: 今日もごゆっくりお過ごしください
+  utter_thanks:
+  - text: ありがとうございました！他に何か知りたいことはありますか？
+  utter_tell_me_request:
+  - text: 質問をどうぞ
+  utter_what_can_you_do:
+  - text: 日常生活、ウィキペディアの検索、天気などお調べいたします。
+  - text: ウィキペディアで検索ができます。また、天気を調べたり、いろいろできます
+  - text: 健康診断、ウィキペディア、天気、日常生活のチェックなどをサポートします
+  utter_what_is_your_name:
+  - text: 私の名前は、バーチャルアシスタントです
+  - text: 私はバーチャルアシスタントです
+  - text: 私の名前はバーチャルロボットです
+  utter_language:
+  - text: 日本語ができます。
+  - text: 日本語が話せます。
+  - text: 私は日本語ができます。
+  - text: 私は日本語が話せます。
+  utter_are_you_human:
+  - text: 人間になりたいけど、ロボットなんです
+  - text: 私はほぼ人間ですが、ロボットです
+  - text: 私は人間のように振る舞うことができますが、ロボットです
+  utter_are_you_bot:
+  - text: はい、私はロボットです
+  - text: はい、私はフレンドリーなロボットです
+  utter_how_are_you:
+  - text: 私は元気です。
+  - text: 元気です。お気遣いありがとうございます。
+  utter_who_built:
+  - text: e-Vitaによって作られました
+  - text: e-Vitaプロジェクトによって作られました
+  - text: ヨーロッパと日本の人たちが作ってくれました
+  utter_thirsty:
+  - text: 熱中症を防ぐため、水分補給は大切ですね。
+  - text: お水、コーヒーなど、お好きな飲み物を飲んでみてはいかがでしょうか？
+  - text: 何を飲むのがおすすめか、人間コーチにもご相談できますよ
+  utter_hungry:
+  - text: お好きな食べ物はありますか？何を食べるのがおすすめか、人間コーチに相談してみましょうか？何かいいアイディアがあるかもしれません、LINEでメッセージをおくってみましょう
+  - text: 携帯にアプリをいれて使ってみましょう、暑い日の夕食、夏バテ予防、などと検索すると、暑い日のレシピを紹介してくれますよ。
+  utter_recognize_sad_face:
+  - text: それを聞いて残念です。人間の方があなたの気持ちをわかってくれるかもしれません。誰かに相談してみてはいかがでしょうか？
+  utter_recognize_happy_face:
+  - text: 良かったですね！
+  - text: いいですね！
+  - text: そう言ってもらえると嬉しいです。私もうれしいです！
+  utter_recommend_todo:
+  - text: 家の中の整理整頓をしてみてはどうでしょうか？
+  - text: 読書でもどうですか？
+  - text: 運動はいかがですか？
+  - text: ウォーキングはどうですか？
+  utter_default:
+  - text: 申し訳ありません、元気よくお願いします！
+  - text: もう一度元気よくお願いします！
+  - text: 元気よく、もう一度お願いします！
+  # utter_recommend_prevention_fall:
+  # - text: 大丈夫でしたか？転倒防止についてお話しましょうか？
+  # utter_advice_prevention_of_fall:
+  # - text: 定期的に運動する必要があります。グループエクササイズクラス、筋力やバランスの再トレーニングは非常に有効です。定期的な目の検査も必要です。白内障がある場合は、すぐに治療を受ける必要があります。少なくとも年に一度は、すべての薬を見直す必要があります。転倒を予防する食事について知りたいですか？
+  # utter_advice_meal:
+  # - text: 葉物野菜、乳製品、大豆など、カルシウムの多い食品を食事に取り入れるとよいでしょう。医師に相談し、カルシウムとビタミンDのサプリメントを勧められるかもしれません。ビタミンDのサプリメントは、推奨される最低レベルの日光を浴びていない場合には、非常に重要です。転倒を防止する靴の特徴について知りたいですか？
+  # utter_advice_footwear:
+  # - text: 靴底が薄く、硬い靴を履くと、足の位置感覚がよくなる場合があります。また、滑りやすい路面では、靴底を踏み固めることで、さらに滑りにくくなります。かかとが低く、四角い靴は、安定感があります。
+  utter_weather_details:
+  - text: 今日の{geographic_location}の天気は{weather_description}で、最高気温{temp_max}度、最低気温{temp_min}度、湿度{humidity}%、風速{wind}m/s、降雨量は1時間当たり{rain}mm、降雪量は1時間当たり{snow}mmです。
+  utter_weather_details_nosnow:
+  - text: 今日の{geographic_location}の天気は{weather_description}で、最高気温{temp_max}度、最低気温{temp_min}度、湿度{humidity}%、風速{wind}m/s、降雨量は1時間当たり{rain}mmで雪は降りません。
+  utter_weather_details_norain:
+  - text: 今日の{geographic_location}の天気は{weather_description}で、最高気温{temp_max}度、最低気温{temp_min}度、湿度{humidity}%、風速{wind}m/s、雨は降りませんが、降雪量は1時間当たり{snow}mmです。
+  utter_weather_details_norain_nosnow:
+  - text: 今日の{geographic_location}の天気は{weather_description}で、最高気温{temp_max}度、最低気温{temp_min}度、湿度{humidity}%、風速{wind}m/s、雨と雪は降りません。
+  utter_weather_tomorrow_details:
+  - text: 明日の{geographic_location}の天気は{weather_description}で、最高気温{temp_max}度、最低気温{temp_min}度、湿度{humidity}%、風速{wind}m/s、降雨量は1時間当たり{rain}mm、降雪量は1時間当たり{snow}mmです。
+  utter_weather_tomorrow_details_nosnow:
+  - text: 明日の{geographic_location}の天気は{weather_description}で、最高気温{temp_max}度、最低気温{temp_min}度、湿度{humidity}%、風速{wind}m/s、降雨量は1時間当たり{rain}mmで雪は降りません。
+  utter_weather_tomorrow_details_norain:
+  - text: 明日の{geographic_location}の天気は{weather_description}で、最高気温{temp_max}度、最低気温{temp_min}度、湿度{humidity}%、風速{wind}m/s、雨は降りませんが、降雪量は1時間当たり{snow}mmです。
+  utter_weather_tomorrow_details_norain_nosnow:
+  - text: 明日の{geographic_location}の天気は{weather_description}で、最高気温{temp_max}度、最低気温{temp_min}度、湿度{humidity}%、風速{wind}m/s、雨と雪は降りません。
+  utter_ask_geographic_location:
+  - text: どこの天気を知りたいですか？
+  - text: どこの天気ですか？
+  - text: どちらの天気ですか？
+  - text: どこのお天気ですか？
+  - text: どこのお天気を知りたいですか？
+  utter_go_bed:
+  - text: おやすみなさい。明日もいい日になりますように。
+  - text: おやすみなさい。明日もお話ししましょう。
+  utter_access_exe_chatbot:
+  - text: スマートフォンを開いて、チャットボットにアクセスしてください。おすすめのビデオを教えてくれます。運動を始める前にスマートウォッチをつけてください。運動が終わったら教えてください。
+  utter_exe_remind_wear_smartwatch:
+  - text: 運動を始める前にスマートウォッチをつけてください。運動が終わったら教えてください。
+  utter_exercise_done:
+  - text: お疲れ様でした。今日の運動のデータを記録します。運動をして疲れましたか？
+  utter_exercise_time:
+  - text: 今日の運動時間は長かったですか？
+  utter_exercise_difficulty:
+  - text: 今日の運動は難しかったですか？
+  utter_exercise_user_data:
+  - text: 教えていただきありがとうございました。次回運動をお勧めするときの参考にさせていただきます。
+  utter_time_to_indoor_exercise:
+  - text: 室内運動をする時間ですよ。
+  utter_inform_indoor_exercise_later:
+  - text: また3時間後にお声かけします。
+  utter_remind_outdoor_exercise:
+  - text: 屋外運動をする時間ですが、今日はもう運動をしましたか？
+  utter_recommend_walk:
+  - text: 夕方から雨が降るので、今から散歩に行きませんか？
+  utter_recommend_exercise_course:
+  - text: 20分ぐらい、家の近所を快適と感じる速度より少し速めに歩くといいでしょう。
+  utter_exercise_done_true:
+  - text: 今日はもう十分運動されていますね。ゆっくり休んでまた頑張りましょう。
+  utter_exercise_done_false:
+  - text: 今日はまだあまり運動していないようですね。
+  utter_suggest_exercise_outside:
+  - text: 天気がいいので今から散歩に行きませんか？
+  - text: 散歩に出かけるのはいかがでしょう？
+  utter_suggest_exercise_indoor:
+  - text: 雨が降りそうなので、室内で運動しませんか？
+  - text: 天気がよくないので、室内運動をするのはいかがでしょう？
+  utter_counter_deny:
+  - text: わかりました。気が向いたらいつでも話しかけてください。
+  # utter_temperature_outside:
+  # - text: 屋外の気温は{temperature_forecast}度の予報です。
+  utter_advise_clothing_1:
+  - text: 26度以上の服装アドバイス
+  utter_advise_clothing_2:
+  - text: 21-25度の服装アドバイス
+  utter_advise_clothing_3:
+  - text: 16-20度の服装アドバイス
+  utter_advise_clothing_4:
+  - text: 12-15度の服装アドバイス
+  utter_advise_clothing_5:
+  - text: 今日は{temp_int}度と寒いので、暖かい服装をお勧めします。
+  utter_advise_clothing_6:
+  - text: 今日は{temp_int}度とかなり寒いので、手袋をして暖かい服装をしてください。
+  utter_set_short_stride_bool:
+  - text: 歩幅が狭いかどうかの判定が{short_stride}にセットされました
+  utter_ask_walking_distance:
+  - text: もし宜しければ、歩いた距離教えてもらえますか？
+  utter_ask_workout_duration:
+  - text: スマートウオッチにワークアウト時間は表示されていますか？もし表示されていたら、教えてください。
+  utter_ask_walking_time:
+  - text: 今日は何時頃散歩されましたか？
+  utter_exe_thanksforinform:
+  - text: 教えてくださり、ありがとうございました。
+  utter_ask_change_remindar_time:
+  - text: 屋外運動のリマインドは15時に設定されていますが、設定を7時に変更しますか？
+  utter_confirm_change_remindar_time:
+  - text: わかりました。散歩のリマインド時間を変更します。
+  utter_confirm_no_change_remindar_time:
+  - text: わかりました。散歩のリマインド時間は変更しません。
+  utter_stiff_shoulders:
+  - text: 肩周りのストレッチをしてはどうでしょうか？
+  utter_how_many_steps_today:
+  - text: 今日{steps_today}歩歩きました
+  utter_steps_less_than_last_week:
+  - text: 先週の平均10000歩に比べると今日は少し少ないようです。
+  utter_steps_more_than_last_week:
+  - text: 先週の平均10000歩に比べると今日は多いですね。
+  utter_recommend_steps_per_day:
+  - text: いちにち10000歩以上歩くと健康にいいですよ。
+  utter_inform_stand:
+  - text: スタンドの時間です！立ち上がって、1分間ほど歩きましょう。
+  utter_recommend_exercise:
+  - text: 今日はあまり活動していないようですね。少し運動をしませんか？
+  utter_would_not_exercise_and_recommend_meditation:
+  - text: 動きたくない日もありますよね。瞑想するのはどうでしょうか？気分が落ち着きますよ。
+  utter_inform_exercise_later:
+  - text: わかりました。何か運動したくなったり、困ったことがあったら、私に話しかけてくださいね。
+  utter_bmi_over_25:
+  - text: あなたのBMIの値は25を超えていますか？
+  utter_suggest_aerobic_exercise:
+  - text: BMI25から30は軽度肥満なので、20分以上有酸素運動をするといいですよ。もしよければ今から散歩に行きませんか？
+  utter_smartwatch_alarm:
+  - text: 10分毎にスマートウォッチのアラームがなります。歩く時間の目安にしてください。
+  utter_bmi_normal:
+  - text: BMI18.5から25.0は普通体重です。どうして太ってきたと思ったのですか？
+  utter_suggest_abs_exercise:
+  - text: 腹筋をして、お腹周りを引き締めてみませんか？
+  utter_suggest_resistance_exercise:
+  - text: 足の筋力をつけると転びにくくなりますよ。
+  utter_knowledge_prevention_fall:
+  - text: スリッパやサンダルは転びやすいので、室内履きや靴がお勧めです。
+  # utter_empathy:
+  # - text: それは心配ですね。
+  # - text: それは大変ですね。
+  # - text: それは残念でしたね。
+  # utter_advise_prevention_fall_shortstride:
+  # - text: 最近、散歩中に歩幅が狭くなっているようです。胸を張って、腕を振るようにして歩くと、足もしっかり上がりますよ。
+  # - text: 最近、歩幅が狭いようです。胸を張って、腕を振るようにして歩くと、足もしっかり上がりますよ。
+  # utter_tell_about_temp:
+  # - text: 今日は{temp_level}ですね。最高気温は{max_temperature}度です。何か予定はありますか？
+actions:
+# - action_calc_stride_length
+- action_check_slot
+- action_check_weather_temp
+- action_clear_slot
+- action_get_user_input
+- action_greeting1
+- action_greeting2
+- action_list_disease
+# - action_prevention_fall
+- action_query_disease_database
+- action_query_duckduckgo
+- action_query_wikipedia
+- action_response_know_more
+- action_weather_tomorrow_detail_user_request
+- action_weather_tomorrow_user_request
+- action_weather_user_request
+- action_yahoo_news
+- compare_steps_with_last_week
+- get_user_name
+- get_weather
+- repeat_back
+- utter_exe_remind_wear_smartwatch
+- utter_remind_outdoor_exercise
+
+# forms:
+#   action_yahoo_news:
+#     required_slots:
+#         - yahoo_news_next
+#         - yahoo_news_stop
